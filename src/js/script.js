@@ -95,6 +95,8 @@
       console.log(thisProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       console.log(thisProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log(thisProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -147,7 +149,7 @@
       console.log('formData', formData);
 
       // set price to default price
-      let price = thisProduct.data.price
+      let price = thisProduct.data.price;
 
       //for every category (param)...
       for (let paramId in thisProduct.data.params) {
@@ -163,8 +165,30 @@
           const option = param.options[optionId];
           console.log(optionId, option);
 
+          // add const that ceck if paramId is included in formData and if it includes optionId
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId);
+
+          // add const that find image with .paramId-optionId class
+          const addonImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          console.log(addonImage);
+
           // check if paramId is included in formData and if it includes optionId
-          if ((formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId))) {
+          if (optionSelected) {
+
+            //check if addonImage is found
+            if (addonImage != null) {
+
+              //add active class to addonImage
+              addonImage.classList.add(classNames.menuProduct.imageVisible);
+            }
+            //check if addonImage is found
+          } else if (addonImage != null) {
+            //remove active class form addonImage
+            addonImage.classList.remove(classNames.menuProduct.imageVisible);
+          }
+          // check if paramId is included in formData and if it includes optionId
+          if (optionSelected) {
+
             // check if the option in not default
             if (option.default != 1) {
               // add to price
