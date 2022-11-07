@@ -388,7 +388,9 @@
       thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
-
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
     }
 
@@ -407,6 +409,11 @@
         thisCart.remove(event.detail.cartProduct);
       });
 
+      thisCart.dom.form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        thisCart.sendOrder();
+
+      })
 
     }
 
@@ -430,24 +437,24 @@
       const thisCart = this;
 
       const deliveryFee = settings.cart.defaultDeliveryFee;
-      let totalNumber = 0;
-      let subtotalPrice = 0;
+      thisCart.totalNumber = 0;
+      thisCart.subtotalPrice = 0;
 
       for (let product of thisCart.products) {
-        totalNumber += product.amount;
-        subtotalPrice += product.price;
-        console.log(totalNumber);
-        console.log(subtotalPrice);
+        thisCart.totalNumber += product.amount;
+        thisCart.subtotalPrice += product.price;
+        console.log(thisCart.totalNumber);
+        console.log(thisCart.subtotalPrice);
       }
-      if (totalNumber >= 1) {
-        thisCart.totalPrice = subtotalPrice + deliveryFee;
+      if (thisCart.totalNumber >= 1) {
+        thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
       } else thisCart.totalPrice = 0;
       console.log(thisCart.totalPrice);
 
 
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
-      thisCart.dom.totalNumber.innerHTML = totalNumber;
-      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
+      thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
       for (let totalPricePlace of thisCart.dom.totalPrice) {
         totalPricePlace.innerHTML = thisCart.totalPrice;
       }
@@ -462,6 +469,42 @@
       thisCart.update();
 
 
+    }
+
+    sendOrder() {
+      const thisCart = this;
+
+      const url = settings.db.url + '/' + settings.db.orders;
+
+      const payload = {};
+      payload.address = thisCart.dom.address.value;
+      payload.phone = thisCart.dom.phone.value;
+      payload.totalPrice = thisCart.totalPrice;
+      payload.subtotalPrice = thisCart.subtotalPrice;
+      payload.totalNumber = thisCart.totalNumber;
+      payload.deliveryFee = settings.cart.defaultDeliveryFee;
+      payload.products = [];
+
+      for (let prod of thisCart.products) {
+        payload.products.push(prod.getData());
+      }
+      console.log(payload);
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      };
+
+      fetch(url, options)
+        .then(function (response) {
+          return response.json();
+        }).then(function (parsedResponse) {
+          console.log('parsedResponse', parsedResponse);
+        });
+      ;
     }
   }
 
@@ -526,6 +569,19 @@
         event.preventDefault();
         thisCartProduct.remove();
       });
+    }
+
+    getData() {
+      const thisCartProduct = this;
+
+      thisCartProduct.productsDataOrder = {}
+      thisCartProduct.productsDataOrder.id = thisCartProduct.id;
+      thisCartProduct.productsDataOrder.amount = thisCartProduct.amount;
+      thisCartProduct.productsDataOrder.price = thisCartProduct.price;
+      thisCartProduct.productsDataOrder.priceSingle = thisCartProduct.priceSingle;
+      thisCartProduct.productsDataOrder.name = thisCartProduct.name;
+      thisCartProduct.productsDataOrder.params = thisCartProduct.params;
+      return thisCartProduct.productsDataOrder;
     }
 
   }
