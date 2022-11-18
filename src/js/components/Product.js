@@ -15,8 +15,6 @@ class Product {
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-
-    console.log('new Product:', thisProduct);
   }
 
   renderInMenu() {
@@ -184,7 +182,6 @@ class Product {
     productSummary.priceSingle = thisProduct.priceSingle;
     productSummary.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
     productSummary.params = thisProduct.prepareCartProductParams();
-    console.log(productSummary);
     return productSummary;
 
   }
@@ -204,7 +201,6 @@ class Product {
         label: param.label,
         options: {}
       };
-      console.log(paramsSummary);
       // for every option in this category
       for (let optionId in param.options) {
         // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
