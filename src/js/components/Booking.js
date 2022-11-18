@@ -164,8 +164,8 @@ class Booking {
 
     if (clickedElement.classList.contains(classNames.booking.table)) {
       if (!clickedElement.classList.contains(classNames.booking.tableBooked)) {
-        console.log(thisBooking.selectedTable, clickedElement);
-        console.log(thisBooking.previousSelectedTable);
+        //console.log(thisBooking.selectedTable, clickedElement);
+        //console.log(thisBooking.previousSelectedTable);
         if (thisBooking.selectedTable == 0) {
           clickedElement.classList.add(classNames.booking.chosenTable);
           thisBooking.selectedTable = clickedElement.getAttribute(settings.booking.tableIdAttribute);
@@ -245,6 +245,16 @@ class Booking {
 
   }
 
+  checkDuration(duration, table, date) {
+    const thisBooking = this;
+
+    for (let hourBlock = thisBooking.hour; hourBlock < thisBooking.hour + duration; hourBlock += 0.5) {
+      if (thisBooking.booked[date][hourBlock].indexOf(table) == false) {
+        return true;
+      }
+    }
+  }
+
   sendBooking() {
     const thisBooking = this;
 
@@ -275,20 +285,23 @@ class Booking {
       body: JSON.stringify(payload)
     };
 
+
     if (payload.table != 0) {
-      fetch(url, options)
-        .then(function (response) {
-          return response.json();
-        }).then(function (parsedResponse) {
-          console.log('parsedResponse', parsedResponse);
-        }).then(function () {
-          thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
-          thisBooking.updateDOM();
-          for (let table of thisBooking.dom.tables) {
-            table.classList.remove(classNames.booking.chosenTable);
-          }
-          thisBooking.selectedTable = 0;
-        });
+      if (thisBooking.checkDuration(payload.duration, payload.table, payload.date) != true) {
+        fetch(url, options)
+          .then(function (response) {
+            return response.json();
+          }).then(function (parsedResponse) {
+            console.log('parsedResponse', parsedResponse);
+          }).then(function () {
+            thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+            thisBooking.updateDOM();
+            for (let table of thisBooking.dom.tables) {
+              table.classList.remove(classNames.booking.chosenTable);
+            }
+            thisBooking.selectedTable = 0;
+          });
+      } else alert('Twoja rezerwacja jest za długa, zmień stolik lub dlugość rezerwacji');
     } else alert('Wybierz stolik lub zmień parametry rezerwacji');
   }
 }
