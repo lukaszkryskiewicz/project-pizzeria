@@ -9,6 +9,12 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
     rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Oswald:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/range-slider.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -24,6 +30,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
         </div>
@@ -65,6 +72,9 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div class="home-wrapper container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -72,6 +82,107 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
+  <script id="template-home-widget" type="text/x-handlebars-template">
+    <div class='home-widget'>
+      <section class='home-navigation'>
+        <div class='row'>
+          <div class='box'>
+            <a href="#order"><img src='./images/homepage/pizza-1.jpg' alt='pizza' title='pizza'>
+              <div class='call-to-action'>
+                <p class='text-call-to-action'>Order Online</p>
+                <p class='hidden'>Lorem ipsum</p>
+              </div>
+            </a>
+          </div>
+          <div class='box'>
+            <a href='#booking'><img src='./images/homepage/pizza-2.jpg' alt='pizza' title='pizza'>
+              <div class='call-to-action'>
+                <p class='text-call-to-action'>Book a table</p>
+                <p class='hidden'>Lorem ipsum</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='bar'>
+            <div class='bar-text'>
+              <p class='bar-title'>Opening hours</p>
+              <p class='bar-subtitle'>Tue-Sun, 12PM - 12AM</p>
+            </div>
+          </div>
+        </div>
+      </section >
+      <section class='carousel'>
+        <div class="main-carousel">
+          <div class="carousel-cell">
+            <div class='cell-row'>
+              <div class='cell-image'><img src='./images/homepage/pizza-3.jpg' alt='pizza' title='pizza'>
+              </div>
+              <div class='cell-text'>
+                <h1 class='opinion-title'>Amazing Service 1 !!</h1>
+                <p class='opinion'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                <p class='signature'>– Margaret Osborne</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-cell">
+            <div class='cell-row'>
+              <div class='cell-image'><img src='./images/homepage/pizza-3.jpg' alt='pizza' title='pizza'>>
+              </div>
+              <div class='cell-text'>
+                <h1 class='opinion-title'>Amazing Service 2 !!</h1>
+                <p class='opinion'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                <p class='signature'>– Margaret Osborne</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-cell">
+            <div class='cell-row'>
+              <div class='cell-image'><img src='./images/homepage/pizza-3.jpg' alt='pizza' title='pizza'>
+              </div>
+              <div class='cell-text'>
+                <h1 class='opinion-title'>Amazing Service 3 !!</h1>
+                <p class='opinion'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas viverra tortor, eu ullamcorper dui imperdiet nec. Nunc sed dolor at elit lobortis sodales.</p>
+                <p class='signature'>– Margaret Osborne</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section >
+      <section class='gallery-wrapper'>
+        <div class='row'>
+          <div class='gallery'>
+            <img class='photo' src='./images/homepage/pizza-4.jpg' alt='pizza' title='pizza'>
+            <span class='text-hidden'><i class="fas fa-heart"></i><i class="fas fa-share-alt"></i></span>
+          </div>
+          <div class='gallery'>
+            <img class='photo' src='./images/homepage/pizza-5.jpg' alt='pizza' title='pizza'>
+            <span class='text-hidden'><i class="fas fa-heart"></i><i class="fas fa-share-alt"></i></span>
+          </div>
+          <div class='gallery'>
+            <img class='photo' src='./images/homepage/pizza-6.jpg' alt='pizza' title='pizza'>
+            <span class='text-hidden'><i class="fas fa-heart"></i><i class="fas fa-share-alt"></i></span>
+          </div>
+          <div class='gallery'>
+            <img class='photo' src='./images/homepage/pizza-7.jpg' alt='pizza' title='pizza'>
+            <span class='text-hidden'><i class="fas fa-heart"></i><i class="fas fa-share-alt"></i></span>
+          </div>
+          <div class='gallery'>
+            <img class='photo' src='./images/homepage/pizza-8.jpg' alt='pizza' title='pizza'>
+            <span class='text-hidden'><i class="fas fa-heart"></i><i class="fas fa-share-alt"></i></span>
+          </div>
+          <div class='gallery'>
+            <img class='photo' src='./images/homepage/pizza-9.jpg' alt='pizza' title='pizza'>
+            <span class='text-hidden'><i class="fas fa-heart"></i><i class="fas fa-share-alt"></i></span>
+          </div>
+        </div>
+      </section>
+      <div class='instagram'>
+        <a href="#">View more on Instagram</a>
+      </div>
+    </div >
+  </script>
 
   <script id="template-cart-product" type="text/x-handlebars-template">
     <li>
@@ -247,6 +358,7 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/range-slider.min.js"></script>
   <script src="js/app.js" type="module"></script>

@@ -1,0 +1,242 @@
+$font-one-home: 'Lato', sans-serif;
+$font-two-home: 'Oswald', sans-serif;
+
+.home-wrapper {
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 603px;
+
+  .box {
+    flex: 0 0 50%;
+    //max-width: 299px;
+    padding: 3px;
+    max-height: 119px;
+    background-color: #ffffff;
+    position: relative;
+
+    img {
+
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      object-position: center center;
+      border-radius: 4px;
+
+    }
+
+    .call-to-action {
+      color: #ffffff;
+      position: absolute;
+      text-transform: uppercase;
+      font-family: $font-two-home;
+      font-size: 20px;
+      font-weight: 700;
+      font-style: normal;
+      letter-spacing: -0.65px;
+      line-height: normal;
+      text-align: center;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: 2s;
+
+      .hidden {
+        font-size: 9px;
+        letter-spacing: normal;
+        display: none;
+        position: absolute;
+        left: 50%;
+        bottom: -60%;
+        transform: translate(-50%, -50%);
+      }
+
+    }
+
+    a:hover>.call-to-action {
+      top: 30%;
+    }
+
+    a:hover>.call-to-action>.hidden {
+      display: inline-block;
+    }
+
+  }
+
+  .bar {
+    flex: 0 0 100%;
+    max-height: 120px;
+    border-radius: 8px;
+    background-color: #ff6b6b;
+    text-align: center;
+    border: 3px solid white;
+
+
+    .bar-text {
+      color: #ffffff;
+      text-transform: uppercase;
+
+      .bar-title {
+        font-family: $font-two-home;
+        font-size: 21px;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: -0.65px;
+        margin: 29px 0 18px 0;
+
+
+      }
+
+      .bar-subtitle {
+        font-family: $font-one-home;
+        font-size: 14px;
+        font-weight: 300;
+        font-style: normal;
+        letter-spacing: normal;
+        line-height: normal;
+        padding: 0 0 30px 0;
+      }
+
+    }
+  }
+
+  .gallery {
+    position: relative;
+    flex: 0 0 33.333%;
+    padding: 2px;
+
+    .photo {
+      width: 193px;
+      height: 193px;
+      border-radius: 10px;
+      padding: 0;
+      margin: 0;
+      object-fit: cover;
+      background-color: black;
+
+      img {
+        background-color: black;
+        z-index: 1;
+        opacity: 100;
+      }
+
+    }
+
+    .text-hidden {
+      position: absolute;
+      display: block;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+
+      i {
+        color: #ffffff;
+        padding: 6px;
+        transition: 1s;
+        cursor: pointer;
+
+        &:hover {
+          color: #ff6b6b;
+        }
+      }
+    }
+
+    &:hover>.text-hidden {
+      opacity: 1;
+    }
+
+    &:hover>img {
+      opacity: 0.5;
+    }
+  }
+}
+
+.main-carousel {
+  height: 193px;
+  margin: 102px 0 92px 0;
+
+  .carousel-cell {
+    width: 100%;
+    height: 193px;
+    margin-right: 10px;
+
+    .cell-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-height: 250px;
+
+
+      .cell-image {
+        flex: 0 0 33.333%;
+        width: 193px;
+        height: 193px;
+      }
+
+      .cell-image img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        //object-position: center center;
+        border-radius: 4px;
+      }
+
+      .cell-text {
+        flex: 0 0 66.666%;
+        color: #333333;
+        font-family: $font-one-home;
+        font-size: 14px;
+        font-style: normal;
+        letter-spacing: normal;
+        line-height: 23px;
+        text-align: left;
+        padding-left: 20px;
+      }
+
+      .cell-text .opinion-title {
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: normal;
+      }
+
+      .cell-text .opinion {
+        font-weight: 400;
+
+      }
+
+      .cell-text .signature {
+        font-style: italic;
+      }
+    }
+
+  }
+}
+
+.instagram {
+
+
+  padding-top: 25px;
+
+  a {
+    color: #ff6b6b;
+    font-family: $font-one-home;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    line-height: 23px;
+    text-align: left;
+    text-decoration: underline;
+  }
+}
