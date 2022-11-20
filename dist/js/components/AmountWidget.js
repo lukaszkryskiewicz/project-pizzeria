@@ -1,5 +1,5 @@
 import { select, settings } from '../settings.js';
-import BaseWidget from './BaseWIdget.js';
+import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget {
   constructor(element) {
