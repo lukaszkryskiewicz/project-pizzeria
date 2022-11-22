@@ -53,7 +53,7 @@ export const select = {
     form: '.booking-form',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.links a',
   },
   // CODE ADDED START
   cart: {
