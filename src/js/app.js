@@ -9,9 +9,7 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
-    console.log(thisApp.pages)
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
-    console.log(thisApp.navLinks)
     const idFromHash = window.location.hash.replace('#/', '');
 
     let pageMatchingHash = thisApp.pages[0].id;
