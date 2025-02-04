@@ -1,1 +1,1 @@
-https://project-pizzeria.lukaszkryskiewi.repl.co
+https://project-pizzeria-dicn.onrender.com
